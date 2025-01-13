@@ -42,6 +42,7 @@ void	ft_lstdelone(t_stack *lst)
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
+	static int	index = 0;
 	t_stack	*last;
 
 	if (!*lst)
@@ -56,5 +57,6 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		last = ft_lstlast(*lst);
 		last->next = new;
         new->prev = last;
+        new->index = ++index;
 	}
 }
