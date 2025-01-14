@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
+/*   Updated: 2025/01/14 15:40:33 by asoudani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
+
+void print(t_stack *a)
+{
+    t_stack *temp;
+
+    temp = a;
+    printf(".............\n");
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf(".............\n");
+}
 
 void push(t_stack **from, t_stack **to)
 {
@@ -114,21 +140,27 @@ void rrr(t_stack **a, t_stack **b)
     rra(a);
     rrb(b);
 }
-int smallest_index(t_stack *a)
+void total(t_stack **a,int i)
 {
-    int smallest = a->n;
+    (*a)->total = i;
+}
+int smallest_index(t_stack **a)
+{
+    t_stack *temp = *a;
+    int smallest = temp->n;
     int i = 0;
     int index = 0;
-    while (a)
+    while (temp)
     {
-        if (a->n < smallest)
+        if (temp->n < smallest)
         {
-            smallest = a->n;
+            smallest = temp->n;
             index = i;
         }
-        a = a->next;
+        temp = temp->next;
         ++i;
     }
+    total(a, i);
     return (index);
 }
 
@@ -154,106 +186,40 @@ void three_alg(t_stack **a)
 
 void four_alg(t_stack **a, t_stack **b)
 {
-    t_stack *temp;
-    printf("before four_algo\n");
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-    printf("............\n");
-    if (smallest_index(*a) == 3)
+    if (smallest_index(a) == 3)
         rra(a);
-    else if (smallest_index(*a) >  2 && smallest_index(*a) != 3)
+    else if (smallest_index(a) >=  2 && smallest_index(a) != 3)
     {
         rra(a);
         rra(a);
     }
-    else if (smallest_index(*a) < 2 && smallest_index(*a) != 0)
+    else if (smallest_index(a) < 2 && smallest_index(a) != 0)
     {
         ra(a);
     }
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-    printf("............\n");
     pb(a, b);
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-
-    printf(".............\n");
     three_alg(a);
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
     pa(a, b);
-    printf(".............\n");
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-
 }
 void five_algo(t_stack **a, t_stack **b)
 {
-     t_stack *temp;
-    if (smallest_index(*a) == 4)
+    if (smallest_index(a) == 4)
         rra(a);
-    else if (smallest_index(*a) >=  2)
-    {
-        rra(a);
-        rra(a);
-    }
-    else if (smallest_index(*a) < 2 && smallest_index(*a) != 0)
+    else if (smallest_index(a) == 3)
     {
         ra(a);
         ra(a);
     }
-    printf("............\n");
-    temp = *a;
-    while (temp)
+    else if (smallest_index(a) ==  2)
     {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
+        rra(a);
+        rra(a);
     }
-    printf("............\n");
+    else if (smallest_index(a) ==  1)
+        ra(a);
     pb(a, b);
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-    printf(".............\n");
     four_alg(a, b);
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-    printf(".............\n");
     pa(a, b);
-    temp = *a;
-    while (temp)
-    {
-        printf("%d the index is : %d\n",temp->n, temp->index);
-        temp = temp->next;
-    }
-    printf(".............\n");
 }
 
 int main(int ac, char **av)
@@ -276,17 +242,10 @@ int main(int ac, char **av)
             ft_lstadd_back(&a, temp);
             i++;
         }
-        printf("before :\n");
         i = 0;
-        temp = a;
-        while (temp)
-        {
-            printf("%d the index is : %d\n",temp->n, temp->index);
-            temp = temp->next;
-            ++i;
-        }
+        print(a);
         a->total = i;
-        printf("the smallest index is : %d\n", smallest_index(a));
+        smallest_index(&a);
         if (a->total  <= 3)
         {
             
@@ -299,12 +258,6 @@ int main(int ac, char **av)
             {
                 three_alg(&a);
             }
-            temp = a;
-            while (temp)
-            {
-                printf(" index : %d is %d\n", temp->index ,temp->n);
-                temp = temp->next;
-            }
         }
         else if (a->total == 4)
         {
@@ -314,6 +267,7 @@ int main(int ac, char **av)
         {
             five_algo(&a, &b);
         }
+        print(a);
         // temp = a;
         // while (temp)
         // {
