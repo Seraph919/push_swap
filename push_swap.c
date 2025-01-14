@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 15:40:33 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:21:03 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,18 +207,21 @@ void five_algo(t_stack **a, t_stack **b)
         rra(a);
     else if (smallest_index(a) == 3)
     {
-        ra(a);
-        ra(a);
+        rra(a);
+        rra(a);
     }
     else if (smallest_index(a) ==  2)
     {
-        rra(a);
-        rra(a);
+        ra(a);
+        ra(a);
     }
     else if (smallest_index(a) ==  1)
         ra(a);
+    print(*a);
     pb(a, b);
+    print(*a);
     four_alg(a, b);
+    print(*a);
     pa(a, b);
 }
 
