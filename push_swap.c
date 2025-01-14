@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 18:22:17 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:09:06 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,21 +224,30 @@ void five_algo(t_stack **a, t_stack **b)
     // print(*a);
     pa(a, b);
 }
+
 void more_algo(t_stack **a, t_stack **b)
 {
-    
+    while (ft_lstsize(*a) > 5)
+    {
+        printf("the size of the list is %d\n", ft_lstsize(*a));
+        push_given(find_smallest(*a), b);
+    }
+    five_algo(a, b);
+    while (ft_lstsize(*b) != 0)
+    {
+        pa(a, b);
+    }
 }
 void fire_force(t_stack **a)
 {
     t_stack *temp;
-    while (a)
+    
+    while (*a)
     {
         temp = *a;
+        *a = (*a)->next;
         free(temp);
-        if ((*a)->next)
-            *a = (*a)->next;
     }
-    free(a);
 }
 int main(int ac, char **av)
 {

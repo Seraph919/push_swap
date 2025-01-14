@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:00 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 15:22:01 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:54:44 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_stack	*ft_lstnew(int n)
 	if (!new)
 		return (NULL);
 	new->n = n;
+	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -50,6 +51,7 @@ void	ft_lstadd_front(t_stack **lst, int n)
 		return ;
 	new->next = *lst;
 	*lst = new;
+	(*lst)->prev = NULL;
 }
 
 void	ft_lstdelone(t_stack *lst)
@@ -67,6 +69,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	if (!*lst)
 	{
 		*lst = new;
+		(*lst)->prev = NULL;
         new->index = 0;
 		return ;
 	}
@@ -74,6 +77,20 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	{
 		last = ft_lstlast(*lst);
 		last->next = new;
+		new->prev = last;
         new->index = ++index;
 	}
+}
+
+int	ft_lstsize(t_stack *lst)
+{
+	int		counter;
+
+	counter = 0;
+	while (lst)
+	{
+		counter++;
+		lst = lst->next;
+	}
+	return (counter);
 }
