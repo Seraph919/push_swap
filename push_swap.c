@@ -6,7 +6,7 @@
 /*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 17:21:03 by seraph           ###   ########.fr       */
+/*   Updated: 2025/01/14 17:46:17 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,12 +217,16 @@ void five_algo(t_stack **a, t_stack **b)
     }
     else if (smallest_index(a) ==  1)
         ra(a);
-    print(*a);
+    // print(*a);
     pb(a, b);
-    print(*a);
+    // print(*a);
     four_alg(a, b);
-    print(*a);
+    // print(*a);
     pa(a, b);
+}
+void more_algo(t_stack **a, t_stack **b)
+{
+    
 }
 
 int main(int ac, char **av)
@@ -246,31 +250,26 @@ int main(int ac, char **av)
             i++;
         }
         i = 0;
-        print(a);
+        // print(a);
         a->total = i;
         smallest_index(&a);
         if (a->total  <= 3)
         {
-            
             if (a->total == 2)
             {
                 if (a->n > a->next->n)
                     sa(a);
             } 
             else
-            {
                 three_alg(&a);
-            }
         }
         else if (a->total == 4)
-        {
             four_alg(&a, &b);
-        }
         else if (a->total == 5)
-        {
             five_algo(&a, &b);
-        }
-        print(a);
+        else
+            more_algo(&a, &b);
+        // print(a);
         // temp = a;
         // while (temp)
         // {
@@ -280,6 +279,7 @@ int main(int ac, char **av)
     }
 }
 // ! handle the cases where the input is already sorted!!!!
+// ! make sure thaat u removed .a in solong
 // }
 // // printf("before pb :\na->n = %d\nthe last n is  = %d\n", a->n, ft_lstlast(a)->n);
 //         rra(&a);
