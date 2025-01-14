@@ -10,6 +10,7 @@ typedef struct s_stack{
     int n;
     struct s_stack *next;
     int index;
+    int total;
 }   t_stack;
 
 int	ft_atoi(const char *str);
