@@ -2,7 +2,7 @@
 
 void push(t_stack **from, t_stack **to)
 {
-    if (*from && from)
+    if (*from)
     {
         t_stack *temp = *from;
         *from = (*from)->next;
@@ -10,16 +10,12 @@ void push(t_stack **from, t_stack **to)
         {
             *to = temp;
             (*to)->next = NULL;
-            (*to)->prev = NULL;
         }
         else
         {
             temp->next = *to;
-            temp->next->prev = temp;
             *to = temp;
-            (*to)->prev = NULL;
         }
-        // (*from)->prev = NULL;
     }
 }
 void pa(t_stack **a, t_stack **b)
@@ -56,12 +52,10 @@ void ra(t_stack **a)
     t_stack *temp;
     t_stack *last;
 
-    temp= (*a);
+    temp = (*a);
     *a = (*a)->next;
     last = ft_lstlast(temp);
     last->next = temp;
-    temp->prev = last;
-    (*a)->prev = NULL;
     temp->next = NULL;
     write(1, "ra\n", 4);
 }
@@ -70,30 +64,26 @@ void rb(t_stack **b)
     t_stack *temp;
     t_stack *last;
 
-    temp= (*b);
+    temp = (*b);
     *b = (*b)->next;
     last = ft_lstlast(temp);
     last->next = temp;
-    temp->prev = last;
-    (*b)->prev = NULL;
     temp->next = NULL;
     write(1, "rb\n", 4);
 }
 
 void rra(t_stack **a)
 {
-    t_stack *last;
-    t_stack *sec;
+    t_stack *b_last;
     t_stack *temp;
+    t_stack *last;
 
-    last = ft_lstlast(*a);
-    sec = last->prev;
-    last->prev = NULL;
-    sec->next = NULL;
+    b_last = ft_before_last(*a);
+    last = b_last->next;
+    b_last->next = NULL;
     temp = *a;
     *a = last;
     last->next = temp;
-    temp->prev = last;
     write(1, "rra\n", 4);
 }
 void rrb(t_stack **b)
@@ -103,13 +93,10 @@ void rrb(t_stack **b)
     t_stack *temp;
 
     last = ft_lstlast(*b);
-    sec = last->prev;
-    last->prev = NULL;
     sec->next = NULL;
     temp = *b;
     *b = last;
     last->next = temp;
-    temp->prev = last;
     write(1, "rrb\n", 4);
 }
 void rr(t_stack **a, t_stack **b)
@@ -131,41 +118,54 @@ int smallest_index(t_stack *a)
 {
     int smallest = a->n;
     int i = 0;
+    int index = 0;
     while (a)
     {
         if (a->n < smallest)
         {
             smallest = a->n;
-            i = a->index;
+            index = i;
         }
         a = a->next;
+        ++i;
     }
-    return (i);
+    return (index);
 }
 
-void three_alg(t_stack *a)
+void three_alg(t_stack **a)
 {
-    if (a->n > a->next->n && a->n > a->next->next->n && a->next->n < a->next->next->n) // 15 2 13
-        ra(&a);
-    else if (a->n > a->next->n && a->n > a->next->next->n && a->next->n > a->next->next->n) // 15 13 2
+    if ((*a)->n > (*a)->next->n && (*a)->n > (*a)->next->next->n && (*a)->next->n < (*a)->next->next->n) // 15 2 13
+        ra(a);
+    else if ((*a)->n > (*a)->next->n && (*a)->n > (*a)->next->next->n && (*a)->next->n > (*a)->next->next->n) // 15 13 2
     {
-        ra(&a);
-        sa(a);
+        ra(a);
+        sa((*a));
     }
-    else if (a->n < a->next->n && a->n < a->next->next->n && a->next->n > a->next->next->n) // 2 15 13
+    else if ((*a)->n < (*a)->next->n && (*a)->n < (*a)->next->next->n && (*a)->next->n > (*a)->next->next->n) // 2 15 13
     {
-        rra(&a);
-        sa(a);
+        rra(a);
+        sa((*a));
     }
-    else if (a->n > a->next->n && a->n < a->next->next->n && a->next->n < a->next->next->n) // 13 2 15
-        sa(a);
-    else if (a->n < a->next->n && a->n > a->next->next->n && a->next->n > a->next->next->n) // 13 15 2
-        rra(&a);
+    else if ((*a)->n > (*a)->next->n && (*a)->n < (*a)->next->next->n && (*a)->next->n < (*a)->next->next->n) // 13 2 15
+        sa((*a));
+    else if ((*a)->n < (*a)->next->n && (*a)->n > (*a)->next->next->n && (*a)->next->n > (*a)->next->next->n) // 13 15 2
+        rra(a);
 }
+
 void four_alg(t_stack **a, t_stack **b)
 {
     t_stack *temp;
-    if (smallest_index(*a) >  2 && smallest_index(*a) != 3)
+    printf("before four_algo\n");
+    temp = *a;
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf("............\n");
+    if (smallest_index(*a) == 3)
+        rra(a);
+    else if (smallest_index(*a) >  2 && smallest_index(*a) != 3)
     {
         rra(a);
         rra(a);
@@ -174,18 +174,14 @@ void four_alg(t_stack **a, t_stack **b)
     {
         ra(a);
     }
-    else
-        rra(a);
-    printf("............\n");
     temp = *a;
     while (temp)
     {
         printf("%d the index is : %d\n",temp->n, temp->index);
         temp = temp->next;
     }
-    pb(a,b);
     printf("............\n");
-
+    pb(a, b);
     temp = *a;
     while (temp)
     {
@@ -194,7 +190,7 @@ void four_alg(t_stack **a, t_stack **b)
     }
 
     printf(".............\n");
-    three_alg(*a);
+    three_alg(a);
     temp = *a;
     while (temp)
     {
@@ -211,7 +207,54 @@ void four_alg(t_stack **a, t_stack **b)
     }
 
 }
-
+void five_algo(t_stack **a, t_stack **b)
+{
+     t_stack *temp;
+    if (smallest_index(*a) == 4)
+        rra(a);
+    else if (smallest_index(*a) >=  2)
+    {
+        rra(a);
+        rra(a);
+    }
+    else if (smallest_index(*a) < 2 && smallest_index(*a) != 0)
+    {
+        ra(a);
+        ra(a);
+    }
+    printf("............\n");
+    temp = *a;
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf("............\n");
+    pb(a, b);
+    temp = *a;
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf(".............\n");
+    four_alg(a, b);
+    temp = *a;
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf(".............\n");
+    pa(a, b);
+    temp = *a;
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf(".............\n");
+}
 
 int main(int ac, char **av)
 {
@@ -233,30 +276,43 @@ int main(int ac, char **av)
             ft_lstadd_back(&a, temp);
             i++;
         }
-        printf("before pb :\n");
+        printf("before :\n");
         i = 0;
         temp = a;
         while (temp)
         {
-            printf("%d is %d\n", ++i,temp->n);
+            printf("%d the index is : %d\n",temp->n, temp->index);
             temp = temp->next;
+            ++i;
         }
         a->total = i;
+        printf("the smallest index is : %d\n", smallest_index(a));
         if (a->total  <= 3)
         {
+            
             if (a->total == 2)
             {
                 if (a->n > a->next->n)
                     sa(a);
-            }
+            } 
             else
             {
-                three_alg(a);
+                three_alg(&a);
+            }
+            temp = a;
+            while (temp)
+            {
+                printf(" index : %d is %d\n", temp->index ,temp->n);
+                temp = temp->next;
             }
         }
         else if (a->total == 4)
         {
             four_alg(&a, &b);
+        }
+        else if (a->total == 5)
+        {
+            five_algo(&a, &b);
         }
         // temp = a;
         // while (temp)
@@ -266,6 +322,7 @@ int main(int ac, char **av)
         // }
     }
 }
+// ! handle the cases where the input is already sorted!!!!
 // }
 // // printf("before pb :\na->n = %d\nthe last n is  = %d\n", a->n, ft_lstlast(a)->n);
 //         rra(&a);

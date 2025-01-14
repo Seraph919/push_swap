@@ -12,6 +12,14 @@ t_stack	*ft_lstnew(int n)
 	return (new);
 }
 
+t_stack	*ft_before_last(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next->next)
+		lst = lst->next;
+	return (lst);
+}
 t_stack	*ft_lstlast(t_stack *lst)
 {
 	if (!lst)
@@ -28,7 +36,6 @@ void	ft_lstadd_front(t_stack **lst, int n)
     new = ft_lstnew(n);
 	if (!new || !lst)
 		return ;
-    new->prev = NULL;
 	new->next = *lst;
 	*lst = new;
 }
@@ -47,7 +54,6 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 
 	if (!*lst)
 	{
-        new->prev = NULL;
 		*lst = new;
         new->index = 0;
 		return ;
@@ -56,7 +62,6 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	{
 		last = ft_lstlast(*lst);
 		last->next = new;
-        new->prev = last;
         new->index = ++index;
 	}
 }
