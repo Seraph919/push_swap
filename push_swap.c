@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 17:46:17 by seraph           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:22:17 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,18 @@ void more_algo(t_stack **a, t_stack **b)
 {
     
 }
-
+void fire_force(t_stack **a)
+{
+    t_stack *temp;
+    while (a)
+    {
+        temp = *a;
+        free(temp);
+        if ((*a)->next)
+            *a = (*a)->next;
+    }
+    free(a);
+}
 int main(int ac, char **av)
 {
     t_stack *a;
@@ -250,7 +261,7 @@ int main(int ac, char **av)
             i++;
         }
         i = 0;
-        // print(a);
+        print(a);
         a->total = i;
         smallest_index(&a);
         if (a->total  <= 3)
@@ -269,7 +280,9 @@ int main(int ac, char **av)
             five_algo(&a, &b);
         else
             more_algo(&a, &b);
-        // print(a);
+        print(a);
+        fire_force(&a);
+        fire_force(&b);
         // temp = a;
         // while (temp)
         // {
