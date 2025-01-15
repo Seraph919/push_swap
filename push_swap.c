@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 15:00:43 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:39:46 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 void total(t_stack **a,int i)
 {
     (*a)->total = i;
+}
+int biggest_index(t_stack *a)
+{
+    t_stack *temp = a;
+    int biggest = temp->n;
+    int i = 0;
+    int index = 0;
+    while (temp)
+    {
+        if (temp->n > biggest)
+        {
+            biggest = temp->n;
+            index = i;
+        }
+        temp = temp->next;
+        ++i;
+    }
+    return (index);
 }
 int smallest_index(t_stack **a)
 {
@@ -140,7 +158,7 @@ int main(int ac, char **av)
             i++;
         }
         i = 0;
-        print(a);
+        // print(a);
         a->total = i;
         smallest_index(&a);
         if (a->total  <= 3)
@@ -159,7 +177,7 @@ int main(int ac, char **av)
             five_algo(&a, &b);
         else
             more_algo(&a, &b);
-        print(a);
+        // print(a);
         fire_force(&a);
         fire_force(&b);
         // temp = a;

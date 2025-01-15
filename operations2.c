@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:11:51 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:13:12 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:54:29 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ra(t_stack **a)
     last = ft_lstlast(temp);
     last->next = temp;
     temp->next = NULL;
-    write(1, "ra\n", 4);
+    ft_putstr("ra\n");
 }
 void rb(t_stack **b)
 {
@@ -34,7 +34,7 @@ void rb(t_stack **b)
     last = ft_lstlast(temp);
     last->next = temp;
     temp->next = NULL;
-    write(1, "rb\n", 4);
+    ft_putstr("rb\n");
 }
 
 void rra(t_stack **a)
@@ -49,7 +49,7 @@ void rra(t_stack **a)
     temp = *a;
     *a = last;
     last->next = temp;
-    write(1, "rra\n", 4);
+    ft_putstr("rra\n");
 }
 void rrb(t_stack **b)
 {
@@ -62,5 +62,5 @@ void rrb(t_stack **b)
     temp = *b;
     *b = last;
     last->next = temp;
-    write(1, "rrb\n", 4);
+    ft_putstr("rrb\n");
 }

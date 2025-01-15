@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:04 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:59:13 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:52:41 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void print(t_stack *a)
     printf(".............\n");
     while (temp)
     {
-        printf("%d the index is : %d\n",temp->n, temp->index);
+        printf("%d\n",temp->n);
         temp = temp->next;
     }
     printf(".............\n");
@@ -68,13 +68,21 @@ t_stack *find_smallest(t_stack *a)
 }
 void find_and_push(t_stack **from ,t_stack **to)
 {
-	if (smallest_index(from) >= ft_lstsize(*from) / 2)
+	if (smallest_index(from) > ft_lstsize(*from) / 2)
 	{
 		while (smallest_index(from) != 0)
 		{
 			rra(from);
 		}
 	}
+	// else if (smallest_index(from) == ft_lstsize(*from) / 2)
+	// {
+	// 	while (smallest_index(from) != 0)
+	// 	{
+	// 		rra(from);
+	// 	}
+	// 	rra(from);
+	// }
 	else if (smallest_index(from) < ft_lstsize(*from) / 2)
 	{
 		while (smallest_index(from) != 0)
@@ -82,4 +90,9 @@ void find_and_push(t_stack **from ,t_stack **to)
 			ra(from);
 		}
 	}
+}
+void ft_putstr(char *s)
+{
+	while (*s)
+		write(1, &(*s++), 1);
 }

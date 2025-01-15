@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:25:38 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:11:17 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:51:10 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void push(t_stack **from, t_stack **to)
 void pa(t_stack **a, t_stack **b)
 {
     push(b,a);
-    write(1, "pa\n", 4);
+    ft_putstr("pa\n");
 }
 void pb(t_stack **a, t_stack **b)
 {
     push(a,b);
-    write(1, "pb\n", 4);
+    ft_putstr("pb\n");
 }
 void sb(t_stack *b)
 {
@@ -47,7 +47,7 @@ void sb(t_stack *b)
     temp = b->n;
     b->n = b->next->n;
     b->next->n = temp;
-    write(1, "sb\n", 4);
+    ft_putstr("sb\n");
 }
 void sa(t_stack *a)
 {
@@ -56,5 +56,5 @@ void sa(t_stack *a)
     temp = a->n;
     a->n = a->next->n;
     a->next->n = temp;
-    write(1, "sa\n", 4);
+    ft_putstr("sa\n");
 }
