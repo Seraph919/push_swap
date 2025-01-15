@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:31:19 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:00:43 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,14 @@ void five_algo(t_stack **a, t_stack **b)
 
 void more_algo(t_stack **a, t_stack **b)
 {
-    printf("%3d", (*a)->total);
+    while (ft_lstsize(*a) > 5)
+    {
+        find_and_push(a, b);
+        pb(a, b);
+    }
+    five_algo(a, b);
+    while (ft_lstsize(*b) > 0)
+        pa(a, b);
 }
 void fire_force(t_stack **a)
 {

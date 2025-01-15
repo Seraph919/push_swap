@@ -15,11 +15,10 @@ all : $(LIB)
 
 $(LIB) : $(OBJ)
 	ar rcs $(LIB) $(OBJ)
-	rm -f $(OBJ)
 
 clean :
-	rm -f $(NAME) $(LIB)
+	rm -f  $(OBJ) $(LIB)
 
 fclean : clean
-
+	rm -f $(NAME)
 re : fclean all

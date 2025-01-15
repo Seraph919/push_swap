@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:04 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:10:14 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:59:13 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,20 @@ t_stack *find_smallest(t_stack *a)
 	}
 	return (returned);
 }
-// void push_given(t_stack *given ,t_stack **to)
-// {
-// 	if (given)
-// 	{
-// 		if (given->prev)
-// 		{
-// 			given->prev->next = given->next;
-// 			given->next->prev = given->prev;
-// 		}
-// 		given->next = *to;
-// 		given->prev = NULL;
-// 		// (*to)->prev = given;
-// 		*to = given;
-// 	}
-// }
+void find_and_push(t_stack **from ,t_stack **to)
+{
+	if (smallest_index(from) >= ft_lstsize(*from) / 2)
+	{
+		while (smallest_index(from) != 0)
+		{
+			rra(from);
+		}
+	}
+	else if (smallest_index(from) < ft_lstsize(*from) / 2)
+	{
+		while (smallest_index(from) != 0)
+		{
+			ra(from);
+		}
+	}
+}

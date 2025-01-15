@@ -22,6 +22,7 @@ void pa(t_stack **a, t_stack **b);
 void pb(t_stack **a, t_stack **b);
 void sb(t_stack *b);
 void rrb(t_stack **b);
+void find_and_push(t_stack **from ,t_stack **to);
 void sa(t_stack *a);
 void ss(t_stack *a, t_stack *b);
 int smallest_index(t_stack **a);
