@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:00 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 14:08:58 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:11:11 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,15 @@ void	ft_lstdelone(t_stack *lst)
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	static int	index = 0;
+	static int	index;
+	static int total;
 	t_stack	*last;
 
 	if (!*lst)
 	{
 		*lst = new;
         new->index = 0;
+		(*lst)->total = 1;
 		return ;
 	}
 	if (lst)
@@ -75,6 +77,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		last = ft_lstlast(*lst);
 		last->next = new;
         new->index = ++index;
+		(*lst)->total = ++total;
 	}
 }
 

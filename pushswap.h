@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 
 typedef struct s_stack{
     int n;
@@ -12,14 +13,19 @@ typedef struct s_stack{
     int total;
 }   t_stack;
 
-int	ft_atoi(const char *str);
+long	ft_atol(const char *str);
+int check_invalid(long n);
 void rb(t_stack **b);
 void ra(t_stack **a);
 void rra(t_stack **a);
+int check_repeat(t_stack *lst);
 int biggest_index(t_stack *a);
+char	*ft_strchr(const char *str, int search_str);
 void rrr(t_stack **a, t_stack **b);
+char	**ft_split(const char *s, char c);
 void rr(t_stack **a, t_stack **b);
 void pa(t_stack **a, t_stack **b);
+char	**ft_split(const char *s, char c);
 void pb(t_stack **a, t_stack **b);
 void sb(t_stack *b);
 void rrb(t_stack **b);

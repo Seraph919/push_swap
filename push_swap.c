@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 16:39:46 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:07:03 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int main(int ac, char **av)
     t_stack *b;
     t_stack *temp;
     int     i;
-    int     n;
+    long     n;
 
     a = NULL;
     b = NULL;
@@ -152,34 +152,39 @@ int main(int ac, char **av)
     {
         while (av[i])
         {
-            n = ft_atoi(av[i]);
+            if (ft_strchr(av[i], ' '))
+                split_arg(av[i], &a);  
+            n = ft_atol(av[i]);
+            printf("the number from atol is %ld\n", n);
+            if (check_invalid(n))
+                return(ft_putstr("INVALID INPUT!\n"), 1);
             temp = ft_lstnew(n);
             ft_lstadd_back(&a, temp);
             i++;
         }
-        i = 0;
-        // print(a);
-        a->total = i;
-        smallest_index(&a);
-        if (a->total  <= 3)
-        {
-            if (a->total == 2)
-            {
-                if (a->n > a->next->n)
-                    sa(a);
-            } 
-            else
-                three_alg(&a);
-        }
-        else if (a->total == 4)
-            four_alg(&a, &b);
-        else if (a->total == 5)
-            five_algo(&a, &b);
-        else
-            more_algo(&a, &b);
-        // print(a);
-        fire_force(&a);
-        fire_force(&b);
+        if (check_repeat(a) == 1)
+            return (ft_putstr("INVALID INPUT!\n"), 1);
+        // i = 0;
+        // smallest_index(&a);
+        // if (a->total  <= 3)
+        // {
+        //     if (a->total == 2)
+        //     {
+        //         if (a->n > a->next->n)
+        //             sa(a);
+        //     } 
+        //     else
+        //         three_alg(&a);
+        // }
+        // else if (a->total == 4)
+        //     four_alg(&a, &b);
+        // else if (a->total == 5)
+        //     five_algo(&a, &b);
+        // else
+        //     more_algo(&a, &b);
+        print(a);
+        // fire_force(&a);
+        // fire_force(&b);
         // temp = a;
         // while (temp)
         // {

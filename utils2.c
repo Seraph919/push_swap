@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:04 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/15 16:52:41 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/15 22:33:58 by seraph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void print(t_stack *a)
     printf(".............\n");
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
+	long	i;
 	int	casee;
-	int	number;
+	long	number;
 
 	i = 0;
 	casee = 1;
