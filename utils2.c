@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:04 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/14 20:04:18 by seraph           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:10:14 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void print(t_stack *a)
+{
+    t_stack *temp;
+
+    temp = a;
+    printf(".............\n");
+    while (temp)
+    {
+        printf("%d the index is : %d\n",temp->n, temp->index);
+        temp = temp->next;
+    }
+    printf(".............\n");
+}
 
 int	ft_atoi(const char *str)
 {
@@ -52,18 +66,18 @@ t_stack *find_smallest(t_stack *a)
 	}
 	return (returned);
 }
-void push_given(t_stack *given ,t_stack **to)
-{
-	if (given)
-	{
-		if (given->prev)
-		{
-			given->prev->next = given->next;
-			given->next->prev = given->prev;
-		}
-		given->next = *to;
-		given->prev = NULL;
-		// (*to)->prev = given;
-		*to = given;
-	}
-}
+// void push_given(t_stack *given ,t_stack **to)
+// {
+// 	if (given)
+// 	{
+// 		if (given->prev)
+// 		{
+// 			given->prev->next = given->next;
+// 			given->next->prev = given->prev;
+// 		}
+// 		given->next = *to;
+// 		given->prev = NULL;
+// 		// (*to)->prev = given;
+// 		*to = given;
+// 	}
+// }
