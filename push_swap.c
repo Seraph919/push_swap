@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/16 16:21:58 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:47:58 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,11 @@ int main(int ac, char **av)
     }
     if (check_repeat(a) == 1)
         return (ft_putstr("INVALID INPUT!\n"), 1);
+    if (check_sorted(a))
+    {
+        return (ft_putstr("It's already sorted!\n"), 1);
+        print(a);
+    }
     // i = 0;
     // smallest_index(&a);
     // if (a->total  <= 3)

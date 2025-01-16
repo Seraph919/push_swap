@@ -36,6 +36,7 @@ void ss(t_stack *a, t_stack *b);
 int smallest_index(t_stack **a);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void push(t_stack **from, t_stack **to);
+int check_sorted(t_stack *lst);
 t_stack	*ft_lstlast(t_stack *lst);
 t_stack	*ft_before_last(t_stack *lst);
 void ft_putstr(char *s);

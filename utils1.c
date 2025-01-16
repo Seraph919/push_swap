@@ -64,3 +64,26 @@ void split_arg (char *av, t_stack **a, int *index)
     }
     *index += 1;
 }
+
+int check_sorted(t_stack *lst)
+{
+    t_stack *temp;
+
+    temp = lst;
+    while (lst)
+    {
+        temp = lst->next;
+        while (temp)
+        {
+            if (lst->n > temp->n)
+            {
+                printf("lst %d in index : %d is the same as lst %d in index : %d"
+                    , temp->n, temp->index, lst->n, lst->index);
+                return (0);
+            }
+            temp = temp->next;
+        }
+        lst = lst->next;
+    }
+    return (1);
+}
