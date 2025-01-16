@@ -8,41 +8,24 @@ int check_invalid(long n)
 }
 int check_repeat(t_stack *lst)
 {
-    static int iteration = 1;
-    int i;
-    int n;
-    int k;
-    int *tab;
-    int total = lst->total;
-    printf("the number of iteration is :%d\n", iteration++);
-    tab = malloc((total * sizeof(int)) + 1);
-    i = 0;
-    n = 0;
-    if (!tab)
-        return (1);
-    while(lst)
+    t_stack *temp;
+
+    temp = lst;
+    while (lst)
     {
-        tab[i] = lst->n;
-        lst = lst->next;
-        i++;
-    }
-    while (n < total)
-    {
-        printf("tab [%d] = %d\n", n,tab[n]);
-        n++;
-    }
-    n = 0;
-    while (i < total)
-    {
-        while (n < total)
+        temp = lst->next;
+        while (temp)
         {
-            if (tab[i] == tab[n])
+            if (lst->n == temp->n)
+            {
+                printf("lst %d in index : %d is the same as lst %d in index : %d"
+                    , temp->n, temp->index, lst->n, lst->index);
                 return (1);
-            k++;
+            }
+            temp = temp->next;
         }
-        i++;
+        lst = lst->next;
     }
-    free(tab);
     return (0);
 }
 
@@ -61,12 +44,15 @@ char	*ft_strchr(const char *str, int search_str)
 		return (&((char *)str)[i]);
 	return (NULL);
 }
-void split_arg (char *av, t_stack **a)
+void split_arg (char *av, t_stack **a, int *index)
 {
-    int i = 0;
     t_stack *temp;
+    int i;
     long n;
-    char **s = ft_split(av, ' ');
+    char **s;
+    
+    s = ft_split(av, ' ');
+    i = 0;
     while (s[i])
     {
         n = ft_atol(s[i]);
@@ -76,4 +62,5 @@ void split_arg (char *av, t_stack **a)
         ft_lstadd_back(a, temp);
         i++;
     }
+    *index += 1;
 }

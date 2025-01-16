@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seraph <seraph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/16 00:07:03 by seraph           ###   ########.fr       */
+/*   Updated: 2025/01/16 16:21:58 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,51 +148,59 @@ int main(int ac, char **av)
     a = NULL;
     b = NULL;
     i = 1;
-    if (ac >= 3)
+    if (ac == 2 && ft_strchr(av[1], ' '))
+    {
+        split_arg(av[i], &a, &i); 
+    }
+    else if (ac >= 3)
     {
         while (av[i])
         {
             if (ft_strchr(av[i], ' '))
-                split_arg(av[i], &a);  
-            n = ft_atol(av[i]);
-            printf("the number from atol is %ld\n", n);
-            if (check_invalid(n))
-                return(ft_putstr("INVALID INPUT!\n"), 1);
-            temp = ft_lstnew(n);
-            ft_lstadd_back(&a, temp);
-            i++;
+                split_arg(av[i], &a, &i); 
+            else 
+            { 
+                n = ft_atol(av[i]);
+                // printf("the number from atol is %ld\n", n);
+                if (check_invalid(n))
+                    return(ft_putstr("INVALID INPUT!\n"), 1);
+                temp = ft_lstnew(n);
+                ft_lstadd_back(&a, temp);
+                i++;
+            }
         }
-        if (check_repeat(a) == 1)
-            return (ft_putstr("INVALID INPUT!\n"), 1);
-        // i = 0;
-        // smallest_index(&a);
-        // if (a->total  <= 3)
-        // {
-        //     if (a->total == 2)
-        //     {
-        //         if (a->n > a->next->n)
-        //             sa(a);
-        //     } 
-        //     else
-        //         three_alg(&a);
-        // }
-        // else if (a->total == 4)
-        //     four_alg(&a, &b);
-        // else if (a->total == 5)
-        //     five_algo(&a, &b);
-        // else
-        //     more_algo(&a, &b);
-        print(a);
-        // fire_force(&a);
-        // fire_force(&b);
-        // temp = a;
-        // while (temp)
-        // {
-        //     printf("%d the index is : %d\n",temp->n, temp->index);
-        //     temp = temp->next;
-        // }
     }
-}
+    if (check_repeat(a) == 1)
+        return (ft_putstr("INVALID INPUT!\n"), 1);
+    // i = 0;
+    // smallest_index(&a);
+    // if (a->total  <= 3)
+    // {
+    //     if (a->total == 2)
+    //     {
+    //         if (a->n > a->next->n)
+    //             sa(a);
+    //     } 
+    //     else
+    //         three_alg(&a);
+    // }
+    // else if (a->total == 4)
+    //     four_alg(&a, &b);
+    // else if (a->total == 5)
+    //     five_algo(&a, &b);
+    // else
+    //     more_algo(&a, &b);
+    print(a);
+    // fire_force(&a);
+    // fire_force(&b);
+    // temp = a;
+    // while (temp)
+    // {
+    //     printf("%d the index is : %d\n",temp->n, temp->index);
+    //     temp = temp->next;
+    // }
+    }
+
 // ! handle the cases where the input is already sorted!!!!
 // ! make sure thaat u removed .a in solong
 // }

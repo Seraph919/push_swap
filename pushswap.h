@@ -16,6 +16,7 @@ typedef struct s_stack{
 long	ft_atol(const char *str);
 int check_invalid(long n);
 void rb(t_stack **b);
+void split_arg (char *av, t_stack **a, int *index);
 void ra(t_stack **a);
 void rra(t_stack **a);
 int check_repeat(t_stack *lst);
