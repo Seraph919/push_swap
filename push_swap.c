@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/16 16:47:58 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:32:20 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,57 +157,64 @@ int main(int ac, char **av)
         while (av[i])
         {
             if (ft_strchr(av[i], ' '))
+            {
+                if (is_only_signs(av[i]))
+                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
                 split_arg(av[i], &a, &i); 
+            }
             else 
-            { 
+            {
+                if (is_only_signs(av[i]))
+                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
                 n = ft_atol(av[i]);
                 // printf("the number from atol is %ld\n", n);
                 if (check_invalid(n))
-                    return(ft_putstr("INVALID INPUT!\n"), 1);
+                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
                 temp = ft_lstnew(n);
                 ft_lstadd_back(&a, temp);
                 i++;
             }
         }
     }
-    if (check_repeat(a) == 1)
-        return (ft_putstr("INVALID INPUT!\n"), 1);
-    if (check_sorted(a))
+    else if (ac == 1 || ac == 2 && !ft_strchr(av[1], ' '))
     {
-        return (ft_putstr("It's already sorted!\n"), 1);
-        print(a);
+        return(ft_putstr("ERROR\n"), fire_force(&a), 1);
     }
-    // i = 0;
-    // smallest_index(&a);
-    // if (a->total  <= 3)
-    // {
-    //     if (a->total == 2)
-    //     {
-    //         if (a->n > a->next->n)
-    //             sa(a);
-    //     } 
-    //     else
-    //         three_alg(&a);
-    // }
-    // else if (a->total == 4)
-    //     four_alg(&a, &b);
-    // else if (a->total == 5)
-    //     five_algo(&a, &b);
-    // else
-    //     more_algo(&a, &b);
+    if (check_repeat(a) == 1 || check_sorted(a) == 1)
+        return (fire_force(&a), 1);
+    printf("the total arguments is : %d\n", a->total);
+    if (a->total + 1  <= 3)
+    {
+        if (a->total + 1== 2)
+        {
+            if (a->n > a->next->n)
+                sa(a);
+        } 
+        else
+            three_alg(&a);
+    }
+    else if (a->total + 1 == 4)
+        four_alg(&a, &b);
+    else if (a->total + 1 == 5)
+        five_algo(&a, &b);
+    else
+        more_algo(&a, &b);
     print(a);
-    // fire_force(&a);
-    // fire_force(&b);
+    fire_force(&a);
+    fire_force(&b);
     // temp = a;
     // while (temp)
     // {
     //     printf("%d the index is : %d\n",temp->n, temp->index);
     //     temp = temp->next;
     // }
-    }
-
-// ! handle the cases where the input is already sorted!!!!
-// ! make sure thaat u removed .a in solong
+}
+// ! this case should'nt work
+// TODO:  ./push_swap  "                           2" 
+// ! As u see It's already sorted! this already sorted shouldnt be
+// ! handle the cases where the input is already sorted!!!! 
+// * DONE!
+// ! handle empty strings..
 // }
 // // printf("before pb :\na->n = %d\nthe last n is  = %d\n", a->n, ft_lstlast(a)->n);
 //         rra(&a);

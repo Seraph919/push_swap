@@ -1,34 +1,5 @@
 #include "pushswap.h"
 
-int check_invalid(long n)
-{
-    if (n > INT_MAX || n < INT_MIN)
-        return (1);
-    return (0);
-}
-int check_repeat(t_stack *lst)
-{
-    t_stack *temp;
-
-    temp = lst;
-    while (lst)
-    {
-        temp = lst->next;
-        while (temp)
-        {
-            if (lst->n == temp->n)
-            {
-                printf("lst %d in index : %d is the same as lst %d in index : %d"
-                    , temp->n, temp->index, lst->n, lst->index);
-                return (1);
-            }
-            temp = temp->next;
-        }
-        lst = lst->next;
-    }
-    return (0);
-}
-
 char	*ft_strchr(const char *str, int search_str)
 {
 	int	i;
@@ -52,38 +23,21 @@ void split_arg (char *av, t_stack **a, int *index)
     char **s;
     
     s = ft_split(av, ' ');
+    if (check_strings(s))
+        return(ft_putstr("ERROR\n"), fire_force(a), exit(1));
     i = 0;
     while (s[i])
     {
         n = ft_atol(s[i]);
         if (check_invalid(n))
-            exit(666);
+            return(ft_putstr("ERROR\n"), fire_force(a), exit(1));;
         temp = ft_lstnew(n);
         ft_lstadd_back(a, temp);
         i++;
     }
     *index += 1;
-}
-
-int check_sorted(t_stack *lst)
-{
-    t_stack *temp;
-
-    temp = lst;
-    while (lst)
-    {
-        temp = lst->next;
-        while (temp)
-        {
-            if (lst->n > temp->n)
-            {
-                printf("lst %d in index : %d is the same as lst %d in index : %d"
-                    , temp->n, temp->index, lst->n, lst->index);
-                return (0);
-            }
-            temp = temp->next;
-        }
-        lst = lst->next;
-    }
-    return (1);
+    i = 0;
+    while (s[i])
+        free(s[i++]);
+    free(s);
 }

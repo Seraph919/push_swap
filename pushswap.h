@@ -15,10 +15,13 @@ typedef struct s_stack{
 
 long	ft_atol(const char *str);
 int check_invalid(long n);
+int error(t_stack **a);
 void rb(t_stack **b);
+int is_only_signs(char *s);
 void split_arg (char *av, t_stack **a, int *index);
 void ra(t_stack **a);
 void rra(t_stack **a);
+void fire_force(t_stack **a);
 int check_repeat(t_stack *lst);
 int biggest_index(t_stack *a);
 char	*ft_strchr(const char *str, int search_str);
@@ -36,6 +39,7 @@ void ss(t_stack *a, t_stack *b);
 int smallest_index(t_stack **a);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void push(t_stack **from, t_stack **to);
+int check_strings(char **s);
 int check_sorted(t_stack *lst);
 t_stack	*ft_lstlast(t_stack *lst);
 t_stack	*ft_before_last(t_stack *lst);
