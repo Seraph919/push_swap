@@ -22,7 +22,7 @@ void split_arg (char *av, t_stack **a, int *index);
 void ra(t_stack **a);
 void rra(t_stack **a);
 void fire_force(t_stack **a);
-int check_repeat(t_stack *lst);
+int check_repeat(t_stack *lst, t_stack **a);
 int biggest_index(t_stack *a);
 char	*ft_strchr(const char *str, int search_str);
 void rrr(t_stack **a, t_stack **b);

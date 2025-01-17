@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/17 10:32:20 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:50:28 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,17 +159,17 @@ int main(int ac, char **av)
             if (ft_strchr(av[i], ' '))
             {
                 if (is_only_signs(av[i]))
-                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
+                    return(ft_putstr("Error\n"), fire_force(&a), 1);
                 split_arg(av[i], &a, &i); 
             }
             else 
             {
                 if (is_only_signs(av[i]))
-                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
+                    return(ft_putstr("Error\n"), fire_force(&a), 1);
                 n = ft_atol(av[i]);
                 // printf("the number from atol is %ld\n", n);
                 if (check_invalid(n))
-                    return(ft_putstr("ERROR\n"), fire_force(&a), 1);
+                    return(ft_putstr("Error\n"), fire_force(&a), 1);
                 temp = ft_lstnew(n);
                 ft_lstadd_back(&a, temp);
                 i++;
@@ -178,11 +178,11 @@ int main(int ac, char **av)
     }
     else if (ac == 1 || ac == 2 && !ft_strchr(av[1], ' '))
     {
-        return(ft_putstr("ERROR\n"), fire_force(&a), 1);
+        return(ft_putstr("Error\n"), fire_force(&a), 1);
     }
-    if (check_repeat(a) == 1 || check_sorted(a) == 1)
+    if (check_repeat(a, &a) == 1 || check_sorted(a) == 1)
         return (fire_force(&a), 1);
-    printf("the total arguments is : %d\n", a->total);
+    // printf("the total arguments is : %d\n", a->total);
     if (a->total + 1  <= 3)
     {
         if (a->total + 1== 2)
@@ -199,7 +199,7 @@ int main(int ac, char **av)
         five_algo(&a, &b);
     else
         more_algo(&a, &b);
-    print(a);
+    // print(a);
     fire_force(&a);
     fire_force(&b);
     // temp = a;

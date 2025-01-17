@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 18:23:38 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/16 18:44:18 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:52:18 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int check_invalid(long n)
         return (1);
     return (0);
 }
-int check_repeat(t_stack *lst)
+int check_repeat(t_stack *lst, t_stack **a)
 {
     t_stack *temp;
 
@@ -85,10 +85,7 @@ int check_repeat(t_stack *lst)
         {
             if (lst->n == temp->n)
             {
-                ft_putstr("INVALID INPUT!\n"),
-                printf("lst %d in index : %d is the same as lst %d in index : %d"
-                    , temp->n, temp->index, lst->n, lst->index);
-                return (1);
+               return(ft_putstr("Error\n"), fire_force(a), 1);
             }
             temp = temp->next;
         }

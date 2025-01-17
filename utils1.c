@@ -24,13 +24,13 @@ void split_arg (char *av, t_stack **a, int *index)
     
     s = ft_split(av, ' ');
     if (check_strings(s))
-        return(ft_putstr("ERROR\n"), fire_force(a), exit(1));
+        return(ft_putstr("Error\n"), fire_force(a), exit(1));
     i = 0;
     while (s[i])
     {
         n = ft_atol(s[i]);
         if (check_invalid(n))
-            return(ft_putstr("ERROR\n"), fire_force(a), exit(1));;
+            return(ft_putstr("Error\n"), fire_force(a), exit(1));;
         temp = ft_lstnew(n);
         ft_lstadd_back(a, temp);
         i++;
