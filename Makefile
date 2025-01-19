@@ -1,4 +1,4 @@
-SRC = operations.c operations2.c  operations3.c utils2.c  utils.c utils1.c utils3.c cheker_functions.c 
+SRC = operations.c operations2.c  operations3.c utils2.c  utils.c utils1.c utils3.c cheker_functions.c alg.c
 
 CFLAGS = -g
 #! make with flags after tests

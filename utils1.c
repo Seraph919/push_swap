@@ -41,3 +41,37 @@ void split_arg (char *av, t_stack **a, int *index)
         free(s[i++]);
     free(s);
 }
+void indexed(int *tab, int size)
+{
+    int  i = 0;
+    int  j;
+    int temp;
+    while (i < size)
+    {
+        j = i + 1;
+        while (j < size)
+        {
+            if (tab[j] < tab[i])
+            {
+                temp =  tab[i];
+                tab[i] = tab[j];
+                tab[j] = temp;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+int *prep_index(t_stack *temp)
+{
+    int total = temp->total + 1;
+    int *tab = malloc(total * sizeof(int));
+    int i = 0;
+    while (i < total)
+    {
+        tab[i] = temp->n;
+        temp = temp->next;
+        i++;
+    }
+    return tab;
+}

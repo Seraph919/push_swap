@@ -13,6 +13,15 @@ typedef struct s_stack{
     int total;
 }   t_stack;
 
+typedef struct data
+{
+    t_stack *stack_a;
+    t_stack *stack_b;
+    int *tab;
+} t_data;
+
+
+
 long	ft_atol(const char *str);
 int check_invalid(long n);
 int error(t_stack **a);
@@ -21,6 +30,9 @@ int is_only_signs(char *s);
 void split_arg (char *av, t_stack **a, int *index);
 void ra(t_stack **a);
 void rra(t_stack **a);
+void algoes(int *tab, t_stack **a, t_stack **b, int size);
+void indexed(int *tab, int size);
+int *prep_index(t_stack *temp);
 void fire_force(t_stack **a);
 int check_repeat(t_stack *lst, t_stack **a);
 int biggest_index(t_stack *a);
