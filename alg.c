@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:20:33 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/19 18:23:03 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:53:30 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,50 @@ void more_algo(t_stack **a, t_stack **b, int *tab)
 {
     int total = (*a)->total + 1;
     int end = total / 6;
-    
+    int start = 0;
+    t_stack *temp;
+    while (start < total)
+        printf("%3d", tab[start++]);
+    start = 0;
+    while (*a)
+    {
+        print(*a);
+        if (in_range(tab, end, start, (*a)->n, total) == 2)
+        {    
+            pb(a, b);
+            rb(b);
+            if (end != total)
+                end++;
+            if (start < end)
+                start++;
+        }
+        if (in_range(tab, end, start, (*a)->n, total) == 1)
+            ra(a);
+        if (in_range(tab, end, start, (*a)->n, total) == 0)
+        {
+            pb(a, b);
+            if ((*b)->next->n && (*b)->n < (*b)->next->n)
+            {
+                rb(b);
+            }
+            if (end != total)
+                end++;
+            if (start < end)
+                start++;
+        }
+    }
+    while (*b)
+    {
+        while (biggest_index(*b) != 0)
+        {
+            if (biggest_index(*b) >= total / 2)
+                rb(b);
+            else if (biggest_index(*b) < total / 2)
+                rrb(b);
+        }
+        if (biggest_index(*b) == 0)
+            pa(a, b);
+    }
 }
 
 void algoes(int *tab,t_stack **a, t_stack **b, int size)

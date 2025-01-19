@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 18:23:38 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/17 10:52:18 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:53:09 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,19 @@ int check_repeat(t_stack *lst, t_stack **a)
         lst = lst->next;
     }
     return (0);
+}
+int in_range(int *tab, int end, int start, int n, int total)
+{
+    int i = 0;
+    while (i <= end && i <= total - 1)
+    {
+        if (n == tab[i] && i < end && i > start)
+            return 0;
+        if (n == tab[i] && i == end)
+            return 0;
+        if (n == tab[i] && i <= start)
+            return 2;
+        i++;
+    }
+    return 1;
 }

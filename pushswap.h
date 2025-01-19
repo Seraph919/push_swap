@@ -36,6 +36,7 @@ int *prep_index(t_stack *temp);
 void fire_force(t_stack **a);
 int check_repeat(t_stack *lst, t_stack **a);
 int biggest_index(t_stack *a);
+int in_range(int *tab, int end, int start, int n, int total);
 char	*ft_strchr(const char *str, int search_str);
 void rrr(t_stack **a, t_stack **b);
 char	**ft_split(const char *s, char c);

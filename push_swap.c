@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:30 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/19 18:20:38 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:44:17 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int main(int ac, char **av)
     else if (ac > 2)
     {
         more_arguments(av, &a, &b);
-        print(a);
+        // print(a);
     }
     if (check_repeat(a, &a) == 1 || check_sorted(a) == 1)
         return (fire_force(&a), 1);

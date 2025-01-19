@@ -6,7 +6,7 @@
 /*   By: asoudani <asoudani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:22:04 by asoudani          #+#    #+#             */
-/*   Updated: 2025/01/16 15:45:29 by asoudani         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:44:45 by asoudani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void print(t_stack *a)
     t_stack *temp;
 
     temp = a;
-    printf(".............\n");
+    printf("\n.............\n");
     while (temp)
     {
         printf("%d\n",temp->n);
